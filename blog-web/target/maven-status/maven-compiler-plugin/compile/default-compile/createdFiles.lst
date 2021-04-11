@@ -1,0 +1,15 @@
+com\hgz\config\AuthAspect.class
+com\hgz\config\JwtSecurityProperties.class
+com\hgz\controller\LoginController.class
+com\hgz\controller\TbUserController.class
+com\hgz\config\PageHelperConfiguration.class
+com\hgz\controller\ArticlesController.class
+com\hgz\annotation\ApiOperationAspect.class
+com\hgz\Application.class
+com\hgz\config\CustomUserDetailsService.class
+com\hgz\exception\MyExceptionHandler.class
+com\hgz\config\CorsConfig.class
+com\hgz\controller\TbApiController.class
+com\hgz\annotation\ApiOperationLog.class
+com\hgz\config\SwaggerConfig.class
+com\hgz\config\SecurityConfig.class

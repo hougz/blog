@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgz.mapper.TbArticleMapper">
+    <resultMap id="BaseResultMap" type="com.hgz.entity.TbArticle">
+        <constructor>
+            <idArg column="article_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="article_title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="article_cover" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="is_top" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="is_draft" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.hgz.entity.TbArticle">
+        <constructor>
+            <idArg column="article_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="article_title" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="article_cover" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="category_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="is_top" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="is_draft" javaType="java.lang.Boolean" jdbcType="BIT"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+            <arg column="article_content" javaType="java.lang.String" jdbcType="LONGVARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        article_id
+        ,
+        article_title,
+        article_cover,
+        category_id,
+        is_top,
+        is_draft,
+        create_time,
+        update_time
+    </sql>
+    <sql id="Blob_Column_List">
+        article_content
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from tb_article
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from tb_article
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.hgz.entity.TbArticle">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="articleId">
+            SELECT LAST_INSERT_ID() AS articleId
+        </selectKey>
+        insert into tb_article (article_id, article_title, article_cover,
+                                category_id, is_top, is_draft,
+                                create_time, update_time, article_content)
+        values (#{articleId,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleCover,jdbcType=VARCHAR},
+                #{categoryId,jdbcType=INTEGER}, #{isTop,jdbcType=BIT}, #{isDraft,jdbcType=BIT},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+                #{articleContent,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.hgz.entity.TbArticle">
+        insert into tb_article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                article_id,
+            </if>
+            <if test="articleTitle != null">
+                article_title,
+            </if>
+            <if test="articleCover != null">
+                article_cover,
+            </if>
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="isTop != null">
+                is_top,
+            </if>
+            <if test="isDraft != null">
+                is_draft,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="articleContent != null">
+                article_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null">
+                #{articleId,jdbcType=INTEGER},
+            </if>
+            <if test="articleTitle != null">
+                #{articleTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="articleCover != null">
+                #{articleCover,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="isTop != null">
+                #{isTop,jdbcType=BIT},
+            </if>
+            <if test="isDraft != null">
+                #{isDraft,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="articleContent != null">
+                #{articleContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hgz.entity.TbArticle">
+        update tb_article
+        <set>
+            <if test="articleTitle != null">
+                article_title = #{articleTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="articleCover != null">
+                article_cover = #{articleCover,jdbcType=VARCHAR},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId,jdbcType=INTEGER},
+            </if>
+            <if test="isTop != null">
+                is_top = #{isTop,jdbcType=BIT},
+            </if>
+            <if test="isDraft != null">
+                is_draft = #{isDraft,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="articleContent != null">
+                article_content = #{articleContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hgz.entity.TbArticle">
+        update tb_article
+        set article_title   = #{articleTitle,jdbcType=VARCHAR},
+            article_cover   = #{articleCover,jdbcType=VARCHAR},
+            category_id     = #{categoryId,jdbcType=INTEGER},
+            is_top          = #{isTop,jdbcType=BIT},
+            is_draft        = #{isDraft,jdbcType=BIT},
+            create_time     = #{createTime,jdbcType=TIMESTAMP},
+            update_time     = #{updateTime,jdbcType=TIMESTAMP},
+            article_content = #{articleContent,jdbcType=LONGVARCHAR}
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hgz.entity.TbArticle">
+        update tb_article
+        set article_title = #{articleTitle,jdbcType=VARCHAR},
+            article_cover = #{articleCover,jdbcType=VARCHAR},
+            category_id   = #{categoryId,jdbcType=INTEGER},
+            is_top        = #{isTop,jdbcType=BIT},
+            is_draft      = #{isDraft,jdbcType=BIT},
+            create_time   = #{createTime,jdbcType=TIMESTAMP},
+            update_time   = #{updateTime,jdbcType=TIMESTAMP}
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="page" resultMap="ResultMapWithBLOBs">
+        select
+        *
+        from tb_article
+        <where>
+            <if test="isDraft!=null and isDraft!=''">
+                is_draft=#{isDraft}
+            </if>
+            <if test="articleTitle!=null and articleTitle!=''">
+                and article_title=#{articleTitle}
+            </if>
+        </where>
+    </select>
+</mapper>

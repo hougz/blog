@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hgz.mapper.TbUserMapper">
+    <select id="findAll" resultType="com.hgz.entity.TbUser">
+        SELECT * FROM tb_user
+    </select>
+
+    <select id="findById" parameterType="int"   resultType="com.hgz.entity.TbUser">
+        SELECT * FROM tb_user where user_id=#{id}
+    </select>
+
+    <select id="findByName"  resultType="com.hgz.entity.TbUser">
+        SELECT * FROM tb_user where username=#{name} and password=#{password}
+    </select>
+
+    <insert id="insert" parameterType="com.hgz.entity.TbUser">
+        INSERT INTO tb_user(user_id,username,PASSWORD,nickname,avatar,intro,description,CREATE_time,update_time,is_delete,is_silence)
+         VALUES (#{userId},#{username},#{password},#{nickname},#{avatar},#{intro},#{description},#{createTime},#{updateTime},#{isDelete},#{isSilence})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        delete FROM tb_user where user_id=#{id}
+    </delete>
+
+    <update id="update" parameterType="int">
+        update  tb_user set is_delete=1 where user_id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,5 @@
+com\hgz\mapper\TbApiMapper.class
+com\hgz\mapper\TbArticleTagMapper.class
+com\hgz\mapper\TbArticleMapper.class
+com\hgz\mapper\TbCategoryMapper.class
+com\hgz\mapper\TbUserMapper.class

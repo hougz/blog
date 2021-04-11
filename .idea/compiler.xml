@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="blog-common" />
+        <module name="blog-dao" />
+        <module name="blog-model" />
+        <module name="blog-service" />
+        <module name="blog-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="blog-help" target="1.8" />
+      <module name="mybatis-help" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="blog-common" options="" />
+      <module name="blog-dao" options="" />
+      <module name="blog-help" options="" />
+      <module name="blog-model" options="" />
+      <module name="blog-service" options="" />
+      <module name="blog-web" options="" />
+    </option>
+  </component>
+</project>
